@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>all</title>
+</head>
+<body>
+  <script>
+
+    let p1 = new Promise((resolve, reject) => {
+      resolve('OK');
+    })
+    let p2 = Promise.resolve('Success');
+    let p3 = Promise.resolve('Oh Yeah');
+    let p4 = Promise.reject('error')
+
+    const result = Promise.all([p1, p2, p3])
+    
+    // 如果三个都是成功的结果，则输出的值就是这三个组合起来的数组
+    console.log(result); // ['OK', 'Success', 'Oh Yeah']
+
+
+    // 如果一旦有一个是错误的结果，则输出的结果也能是错误的这个结果
+
+    const res = Promise.all([p1, p2, p3, p4]);
+    console.log(res); // ['error']
+
+  </script>
+</body>
+</html>

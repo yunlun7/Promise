@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>resolve与reject</title>
+</head>
+<body>
+  <script>
+    // 
+    let p1 = Promise.resolve('resolve');
+    // 如果传入的参数为 非promise类型的对象，则返回的结果为成功的promise对象
+    console.log(p1);
+
+    let p2 = Promise.resolve(new Promise((resolve, reject) => {
+      reject('error')
+    }))
+    // console.log(p2);
+    // 解决的方法
+    p2.catch(reason => {
+      console.log(reason);
+    })
+
+
+    let p3 = Promise.reject('reject');
+    let p4 = Promise.reject(new Promise((resolve, reject) => {
+      resolve('success');
+    }))
+    console.log(p4);
+  </script>
+</body>
+</html>

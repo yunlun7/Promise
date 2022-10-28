@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>能否执行多个回调</title>
+</head>
+<body>
+  <script>
+  let p = new Promise((resolve, reject) => {
+    resolve('ok'); // 如果此处不改变状态，则下面的回调不会执行
+  });
+
+  // 指定回调  --1
+  p.then(value => {
+    console.log(value); // ok
+  })
+
+  // 指定回调 --2
+  p.then(value => {
+    alert(value);  // ok
+  })
+
+  </script>
+</body>
+</html>

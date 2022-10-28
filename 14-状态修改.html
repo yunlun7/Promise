@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>状态修改</title>
+</head>
+<body>
+  <script>
+    let p = new Promise((resolve, reject) => {
+      // 方法1：使用resolve 方法
+      // resolve('ok'); // pending -->> fulfilled  (resolve)
+      
+      // 方法2：使用reject 方法
+      // reject('error'); // pending -->> fulfilled (reject)
+
+      // 方法3：抛出错误
+      throw '出问题了';  // pending --> fulfilled (reject)
+    });
+
+    console.log(p);
+  </script>
+</body>
+</html>
