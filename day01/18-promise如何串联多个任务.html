@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>promise串联多个任务</title>
+</head>
+<body>
+  <script>
+    let p = new Promise((resolve, reject) => {
+      // 异步任务
+      setTimeout(() => {
+        resolve('ok')
+      }, 1000);
+    });
+
+    p.then(value => {
+      // 异步任务
+      return new Promise((resolve, reject) => {
+        resolve('success');
+      });
+    }).then(value => {
+      console.log(value); // success
+    }).then(value => {
+      console.log(value); // undefined
+      /* 
+      此处为undefined的原因：
+        因为第二个then的返回结果是promise状态，而promise的状态又是由回调函数的返回结果来决定的，
+          而此时它并没有返回结果，所为undefined（不是promise类型的值）。
+          ！！！因此这个then返回的promise状态就是resolve，且成功的结果就是undefined
+
+        故，可以执行最后一个then方法
+      */
+    })
+  </script>
+</body>
+</html>
